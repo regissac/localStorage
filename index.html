@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>localStorage</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        h1{
+            width: 100%;
+            height: 100px;
+            color: azure;
+            background-color: black;            
+            text-align: center;
+            line-height: 100px;
+            font-size: 28pt;
+            font-weight: bold;
+            margin-bottom: 45px;
+        }
+        .box{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .child{
+            height: 400px;
+            width: 400px;
+            background-color: brown;
+            text-align: center;
+            border: 5px solid white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;            
+        }
+        /*.child:nth-child(1){
+            margin-right: 5px;
+        }
+        .child:nth-child(2){
+            margin-left: 5px;
+        }*/
+        .group-input{
+            width: 100%;
+            display: flex;
+            justify-content: center;            
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        input[type="button"]{
+            width: 100px;
+            height: 50px;
+            font-size: 14pt;
+            padding: 5px;            
+        }
+        input{
+            width: 90%;
+            height: 40px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>localStorage</h1>
+    <div class="box">
+        <div class="child">
+            <input type="text" name="nome" id="nome" placeholder="Digite o seu nome">
+            <input type="tel" name="tel" id="tel" placeholder="Digite o numero do seu celular">
+            <input type="email" name="email" id="email" placeholder="Digite o seu email">
+        </div>
+        <div class="child" id="resultado"></div>        
+    </div>
+    
+    <div class="group-input">
+        <input type="button" onclick="add()" value="Inserir">
+        <input type="button" onclick="remove()" value="Remover">
+    </div>
+</body>
+<script>
+    var i=1;
+    //var contato="contato "+i;
+    var cont;
+    //adicionando no localStorage
+    function add(){
+        var nome = document.querySelector("#nome").value;
+        var tel = document.querySelector("#tel").value;
+        var email = document.querySelector("#email").value;
+        localStorage.setItem("contato"+i,Array=["Nome: "+nome,"Tel: "+tel,"E-mail: "+email]);//automaticamente insere 
+    //no localStorage do navegador
+        
+        clear();
+        var resultado = localStorage.getItem("contato"+i);
+        document.querySelector("#resultado").innerHTML=resultado;
+
+        i++;
+    }
+
+    //removendo do localStorage
+    function remove(){       
+        var index=1;
+        var resposta = confirm('Deseja excluir?');
+        if (resposta == true){
+            var teste = i;
+            console.log(teste);
+                while (index<10000) {                    
+                   localStorage.removeItem("contato"+index);//automaticamente remove no localStorage do navegador    
+                   index++;                
+                }
+        
+        }   
+    }
+    //limpando os campos(input)
+    function clear(){
+        document.querySelector("#nome").value="";
+        document.querySelector("#tel").value="";
+        document.querySelector("#email").value="";
+    }
+</script>
+</html>
